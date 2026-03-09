@@ -1,0 +1,19 @@
+{
+  "patient_1": {
+    "name": "Soumya Gupta",
+    "age": 68,
+    "conditions": [
+      "Type 2 Diabetes",
+      "Hypertension"
+    ],
+    "lab_results": {
+      "glucose": [140, 150, 160],
+      "hba1c": 7.8
+    },
+    "allergies": [],
+    "current_medications": [
+      "Metformin",
+      "Amlodipine"
+    ]
+  }
+}
