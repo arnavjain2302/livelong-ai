@@ -31,7 +31,7 @@ Your job is to convert prescriptions into a structured daily care plan.
 
 Follow these rules carefully:
 
-MEDICATION SCHEDULING RULES:
+MEDICATION SCHEDULING:
 
 1. If medicine says "after meals":
    schedule it 15 minutes after the meal time.

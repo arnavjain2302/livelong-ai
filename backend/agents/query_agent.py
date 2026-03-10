@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 from agents.retriever_agent import get_patient_records
 from agents.planner_agent import generate_care_plan
-from agents.executor_agent import execute_task
+from agents.executor_agent import execute_care_plan
 
 load_dotenv()
 
@@ -61,9 +61,9 @@ def handle_user_query(user_query):
         return {
             "message": "Planner agent should generate care plan."
         }
-
     elif agent == "executor":
-        return execute_task(user_query)
-
+        return {
+            "message": "Executor agent handles reminders and scheduling."
+        }
     else:
         return {"message": "Sorry, I could not understand the request."}
