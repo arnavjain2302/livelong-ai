@@ -12,6 +12,9 @@ import json
 from agents.retriever_agent import get_patient_records
 from agents.planner_agent import generate_care_plan
 from agents.executor_agent import execute_care_plan
+from agents.query_agent import handle_user_query
+
+from pydantic import BaseModel
 
 load_dotenv()
 
@@ -131,3 +134,14 @@ async def upload_prescription(file: UploadFile = File(...)):
         "care_plan" : care_plan,
         "actions" : actions
     }
+
+class ChatRequest(BaseModel):
+    query: str
+
+
+@app.post("/chat")
+def chat_with_agent(request: ChatRequest):
+
+    response = handle_user_query(request.query)
+
+    return response
