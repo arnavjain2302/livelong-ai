@@ -1,4 +1,5 @@
 from fastapi import FastAPI, UploadFile, File
+from fastapi.middleware.cors import CORSMiddleware
 import shutil
 import os
 
@@ -12,7 +13,7 @@ import json
 from agents.retriever_agent import get_patient_records
 from agents.planner_agent import generate_care_plan
 from agents.executor_agent import execute_care_plan
-from agents.query_agent import handle_user_query
+from agents.query_agent import handle_user_query, set_latest_context
 
 from pydantic import BaseModel
 
@@ -37,6 +38,17 @@ document_client = DocumentAnalysisClient(
 )
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:3000",
+        "http://127.0.0.1:3000"
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 def extract_text_from_pdf(file_path):
 
@@ -107,6 +119,7 @@ patient_profile = {
 }
 
 patient_records = get_patient_records("patient_1")
+set_latest_context(patient_records=patient_records)
 
 @app.get("/")
 def home():
@@ -128,8 +141,16 @@ async def upload_prescription(file: UploadFile = File(...)):
 
     actions = execute_care_plan(care_plan)
 
+    set_latest_context(
+        structured_data=structured_data,
+        care_plan=care_plan,
+        actions=actions,
+        patient_records=patient_records
+    )
+
     return {
         "message": "Prescription processed",
+        "extracted_data" : extracted_text,
         "structured_data": structured_data,
         "care_plan" : care_plan,
         "actions" : actions
@@ -144,4 +165,4 @@ def chat_with_agent(request: ChatRequest):
 
     response = handle_user_query(request.query)
 
-    return response
+    return {"response": response}

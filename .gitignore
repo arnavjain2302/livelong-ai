@@ -2,4 +2,5 @@ venv/
 .env
 __pycache__/
 uploads/
-*.pyc
+node_modules/
+frontend/node_modules/

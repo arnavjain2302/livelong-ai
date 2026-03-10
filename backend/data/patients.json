@@ -2,18 +2,70 @@
   "patient_1": {
     "name": "Soumya Gupta",
     "age": 68,
+    "gender": "Male",
+    "city": "New Delhi",
+
     "conditions": [
-      "Type 2 Diabetes",
-      "Hypertension"
+      "Type 2 Diabetes Mellitus",
+      "Hypertension",
+      "Hyperlipidemia"
     ],
-    "lab_results": {
-      "glucose": [140, 150, 160],
-      "hba1c": 7.8
-    },
+
     "allergies": [],
+
     "current_medications": [
-      "Metformin",
-      "Amlodipine"
-    ]
+      {
+        "name": "Metformin",
+        "dose": "500 mg",
+        "frequency": "twice daily after meals"
+      },
+      {
+        "name": "Amlodipine",
+        "dose": "5 mg",
+        "frequency": "once every morning"
+      },
+      {
+        "name": "Atorvastatin",
+        "dose": "10 mg",
+        "frequency": "once daily at bedtime"
+      },
+      {
+        "name": "Aspirin",
+        "dose": "75 mg",
+        "frequency": "once daily after breakfast"
+      }
+    ],
+
+    "lab_results": {
+      "recent_blood_glucose": [140, 150, 160],
+      "hba1c": 7.8,
+      "cholesterol": {
+        "total": 210,
+        "ldl": 130,
+        "hdl": 45
+      }
+    },
+
+    "monitoring_schedule": [
+      "Fasting Blood Sugar twice per week",
+      "HbA1c every 3 months",
+      "Lipid Profile every 6 months",
+      "Blood Pressure monitoring daily"
+    ],
+
+    "lifestyle_advice": [
+      "Walk at least 30 minutes daily",
+      "Maintain low sugar and low salt diet",
+      "Maintain regular sleep schedule",
+      "Avoid smoking and alcohol"
+    ],
+
+    "doctor": {
+      "name": "Dr. R. Sharma",
+      "specialization": "Internal Medicine",
+      "clinic": "CityCare Multi-Speciality Clinic"
+    },
+
+    "next_follow_up": "2026-04-01"
   }
 }
